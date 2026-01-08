@@ -1,0 +1,71 @@
+/* ============================================================================
+   DASHBOARD PAGE STYLES
+   ============================================================================ */
+
+/* ===== MAIN CONTENT ===== */
+
+.main-content {
+    min-height: calc(100vh - var(--nav-height) - var(--footer-height));
+    padding-top: calc(var(--nav-height) + var(--space-12));
+    padding-bottom: var(--space-12);
+}
+
+/* ===== PAGE HEADER ===== */
+
+.page-header {
+    margin-bottom: var(--space-12);
+}
+
+.page-header h1 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-2);
+}
+
+.page-header p {
+    color: var(--text-muted);
+    font-size: var(--text-lg);
+    margin: 0;
+}
+
+/* ===== KPI SECTION ===== */
+
+.kpi-section {
+    margin-bottom: var(--space-12);
+}
+
+/* ===== CHARTS SECTION ===== */
+
+.charts-section {
+    margin-bottom: var(--space-12);
+}
+
+/* ===== SUMMARY SECTION ===== */
+
+.summary-section {
+    margin-bottom: var(--space-12);
+}
+
+.summary-content {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+}
+
+.summary-content p {
+    margin-bottom: var(--space-4);
+}
+
+.summary-content strong {
+    color: var(--text-primary);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-top: calc(var(--nav-height) + var(--space-8));
+    }
+
+    .page-header h1 {
+        font-size: var(--text-3xl);
+    }
+}

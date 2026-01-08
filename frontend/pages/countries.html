@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries Analysis | Global Job Market Analysis</title>
+    <link rel="stylesheet" href="../css/vars.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/countries.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="../index.html" class="navbar-logo">🌍 Global Job Analysis</a>
+            <button class="navbar-toggle">☰</button>
+            <ul class="navbar-menu">
+                <li><a href="../index.html" class="navbar-link">Trang chủ</a></li>
+                <li><a href="dashboard.html" class="navbar-link">Dashboard</a></li>
+                <li><a href="jobs.html" class="navbar-link">Jobs</a></li>
+                <li><a href="countries.html" class="navbar-link">Countries</a></li>
+                <li><a href="skills.html" class="navbar-link">Skills</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>🌍 Country Analysis</h1>
+                <p>So sánh thị trường việc làm giữa các quốc gia</p>
+            </div>
+
+            <!-- Country Cards -->
+            <div class="countries-grid" id="countries-grid">
+                <div class="skeleton" style="height: 150px;"></div>
+                <div class="skeleton" style="height: 150px;"></div>
+                <div class="skeleton" style="height: 150px;"></div>
+            </div>
+
+            <!-- Comparison Chart -->
+            <div class="chart-container">
+                <h3 class="chart-title">📊 Jobs Comparison by Country</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chart-countries"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Global Job Market Analysis. Data from Adzuna API.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/nav.js"></script>
+    <script src="../js/countries.js"></script>
+</body>
+
+</html>

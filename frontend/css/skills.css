@@ -1,0 +1,30 @@
+/* Skills Page */
+.skills-cloud {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-xl);
+    padding: var(--space-8);
+    margin: var(--space-8) 0;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+}
+
+.skill-tag {
+    padding: var(--space-3) var(--space-6);
+    background: var(--gradient-primary);
+    color: white;
+    border-radius: var(--border-radius-full);
+    font-weight: var(--font-semibold);
+    font-size: var(--text-lg);
+    transition: all var(--transition-base);
+}
+
+.skill-tag:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-glow-primary);
+}
