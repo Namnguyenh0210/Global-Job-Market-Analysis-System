@@ -28,13 +28,14 @@ ADZUNA_APP_KEY = os.getenv('ADZUNA_APP_KEY')
 # ============================================================================
 # Danh sách quốc gia (country code)
 COUNTRIES = {
-    'vn': 'Vietnam',
     'sg': 'Singapore',
-    'th': 'Thailand',
-    'id': 'Indonesia',
     'us': 'United States',
     'gb': 'United Kingdom',
-    'de': 'Germany'
+    'de': 'Germany',
+    'in': 'India',
+    'it': 'Italy',
+    'nl': 'Netherlands',
+    'nz': 'New Zealand'
 }
 
 # Danh sách nghề nghiệp

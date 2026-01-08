@@ -80,9 +80,35 @@ async function fetchTopSkills() {
     return await fetchAPI('/api/top-skills');
 }
 
+
 // ============================================================================
 // FORMATTING FUNCTIONS
 // ============================================================================
+
+/**
+ * Country code mapping - Chuyển đổi mã quốc gia sang tên đầy đủ
+ */
+const COUNTRY_NAMES = {
+    'SG': 'Singapore',
+    'US': 'Hoa Kỳ',
+    'GB': 'Anh',
+    'DE': 'Đức',
+    'IN': 'Ấn Độ',
+    'IT': 'Ý',
+    'NL': 'Hà Lan',
+    'NZ': 'New Zealand'
+};
+
+/**
+ * Format country code to full name
+ * @param {string} countryCode - Country code (VN, SG, US...)
+ * @returns {string} Full country name
+ */
+function formatCountryName(countryCode) {
+    if (!countryCode) return 'N/A';
+    const code = countryCode.toUpperCase();
+    return COUNTRY_NAMES[code] || code;
+}
 
 /**
  * Format số với dấu phẩy phân cách hàng nghìn

@@ -6,6 +6,8 @@ REST API server để frontend lấy dữ liệu phân tích
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
+import numpy as np
+import math
 from pathlib import Path
 from typing import List, Dict, Optional
 
@@ -62,6 +64,29 @@ def check_data_loaded():
             status_code=503,
             detail="Dữ liệu chưa sẵn sàng. Vui lòng chạy transform_jobs.py trước!"
         )
+
+
+def clean_nan_values(obj):
+    """
+    Recursively clean NaN, Infinity values from dictionaries and lists
+    Converts them to None for proper JSON serialization
+    """
+    if isinstance(obj, dict):
+        return {key: clean_nan_values(value) for key, value in obj.items()}
+    elif isinstance(obj, list):
+        return [clean_nan_values(item) for item in obj]
+    elif isinstance(obj, float):
+        if math.isnan(obj) or math.isinf(obj):
+            return None
+        return obj
+    elif isinstance(obj, (np.integer, np.floating)):
+        # Handle numpy types
+        if np.isnan(obj) or np.isinf(obj):
+            return None
+        return obj.item()  # Convert to Python native type
+    else:
+        return obj
+
 
 
 # ============================================================================
@@ -145,6 +170,9 @@ def get_jobs(
     
     # Convert to dict
     jobs = df.to_dict('records')
+    
+    # Clean NaN/Infinity values - CRITICAL for JSON serialization
+    jobs = clean_nan_values(jobs)
     
     return {
         "total": total,

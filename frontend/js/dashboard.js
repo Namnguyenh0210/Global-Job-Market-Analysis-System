@@ -113,7 +113,7 @@ async function loadCountryChart() {
 
     // Lấy top 7 countries
     const chartData = data.data.slice(0, 7);
-    const labels = chartData.map(item => item.country);
+    const labels = chartData.map(item => formatCountryName(item.country));
     const values = chartData.map(item => item.count);
 
     const ctx = document.getElementById('chart-country');
@@ -188,7 +188,7 @@ async function loadSummary() {
     </p>
     <p>
       <strong>🌏 Quốc gia:</strong> 
-      <strong>${topCountry.country.toUpperCase()}</strong> có số lượng công việc nhiều nhất với 
+      <strong>${formatCountryName(topCountry.country)}</strong> có số lượng công việc nhiều nhất với 
       <strong>${formatNumber(topCountry.count)}</strong> jobs.
     </p>
     <p>

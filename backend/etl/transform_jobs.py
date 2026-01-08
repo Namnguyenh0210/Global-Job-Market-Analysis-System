@@ -17,13 +17,14 @@ OUTPUT_DIR = Path(__file__).parent.parent / 'data'
 
 # Mapping quốc gia -> khu vực
 COUNTRY_TO_REGION = {
-    'vn': 'Southeast Asia',
     'sg': 'Southeast Asia',
-    'th': 'Southeast Asia',
-    'id': 'Southeast Asia',
     'us': 'North America',
     'gb': 'Europe',
-    'de': 'Europe'
+    'de': 'Europe',
+    'in': 'Asia',
+    'it': 'Europe',
+    'nl': 'Europe',
+    'nz': 'Oceania'
 }
 
 # Danh sách kỹ năng cần phân tích
