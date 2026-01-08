@@ -52,12 +52,18 @@ open frontend/index.html
 
 **Lần đầu tiên:**
 ```bash
-# 1. Cập nhật API keys vào backend/etl/extract_jobs.py
-# 2. Chạy full pipeline
+# 1. Sao chép file .env.example thành .env
+cp .env.example .env
+
+# 2. Mở file .env và điền API keys của bạn
+# (Xem API_SETUP.md để biết cách lấy API keys)
+
+# 3. Chạy full pipeline
 ./run_all.sh
 
-# 3. Mở frontend/index.html bằng Live Server
+# 4. Mở frontend/index.html bằng Live Server
 ```
+
 
 **Các lần sau:**
 ```bash
