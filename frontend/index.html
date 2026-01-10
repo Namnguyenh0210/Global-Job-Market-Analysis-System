@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Phân tích thị trường việc làm toàn cầu - Global Job Market Analysis System">
-    <title>Global Job Market Analysis | Home</title>
-    
+    <meta name="description"
+        content="Phân tích thị trường việc làm toàn cầu - Hệ thống phân tích việc làm IT từ 8 quốc gia">
+    <title>Phân tích Thị trường Việc làm Toàn cầu | Trang chủ</title>
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/vars.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/home.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container navbar-container">
-            <a href="index.html" class="navbar-logo">🌍 Global Job Analysis</a>
+            <a href="index.html" class="navbar-logo">🌍 Phân tích Việc làm Toàn cầu</a>
             <button class="navbar-toggle">☰</button>
             <ul class="navbar-menu">
-                <li><a href="index.html" class="navbar-link">Trang chủ</a></li>
-                <li><a href="pages/dashboard.html" class="navbar-link">Dashboard</a></li>
-                <li><a href="pages/jobs.html" class="navbar-link">Jobs</a></li>
-                <li><a href="pages/countries.html" class="navbar-link">Countries</a></li>
-                <li><a href="pages/skills.html" class="navbar-link">Skills</a></li>
+                <li><a href="index.html" class="navbar-link active">Trang chủ</a></li>
+                <li><a href="pages/dashboard.html" class="navbar-link">Bảng điều khiển</a></li>
+                <li><a href="pages/jobs.html" class="navbar-link">Việc làm</a></li>
+                <li><a href="pages/countries.html" class="navbar-link">Quốc gia</a></li>
+                <li><a href="pages/skills.html" class="navbar-link">Kỹ năng</a></li>
             </ul>
         </div>
     </nav>
@@ -38,15 +41,15 @@
                     <span class="gradient-text">Việc làm Toàn cầu</span>
                 </h1>
                 <p class="hero-subtitle animate-on-scroll">
-                    Khám phá xu hướng tuyển dụng từ 7 quốc gia, 3 nghề nghiệp IT hàng đầu.
-                    Dữ liệu realtime từ Adzuna API.
+                    Khám phá xu hướng tuyển dụng IT từ 8 quốc gia với 3 nghề nghiệp hàng đầu.<br>
+                    Dữ liệu thời gian thực từ Adzuna API.
                 </p>
                 <div class="hero-cta animate-on-scroll">
                     <a href="pages/dashboard.html" class="btn btn-primary btn-lg">
-                        📊 Xem Dashboard
+                        📊 Xem bảng điều khiển
                     </a>
                     <a href="pages/jobs.html" class="btn btn-secondary btn-lg">
-                        💼 Browse Jobs
+                        💼 Tìm việc làm
                     </a>
                 </div>
             </div>
@@ -60,22 +63,22 @@
                 <div class="stat-card animate-on-scroll">
                     <div class="stat-icon">💼</div>
                     <div class="stat-value" id="stat-jobs">0</div>
-                    <div class="stat-label">Total Jobs</div>
+                    <div class="stat-label">Tổng số việc làm</div>
                 </div>
                 <div class="stat-card animate-on-scroll">
                     <div class="stat-icon">🌍</div>
                     <div class="stat-value" id="stat-countries">0</div>
-                    <div class="stat-label">Countries</div>
+                    <div class="stat-label">Quốc gia</div>
                 </div>
                 <div class="stat-card animate-on-scroll">
                     <div class="stat-icon">🏢</div>
                     <div class="stat-value" id="stat-companies">0</div>
-                    <div class="stat-label">Companies</div>
+                    <div class="stat-label">Công ty</div>
                 </div>
                 <div class="stat-card animate-on-scroll">
                     <div class="stat-icon">💰</div>
                     <div class="stat-value" id="stat-salary">0%</div>
-                    <div class="stat-label">Jobs with Salary</div>
+                    <div class="stat-label">Công khai mức lương</div>
                 </div>
             </div>
         </div>
@@ -85,33 +88,54 @@
     <section class="features">
         <div class="container">
             <h2 class="section-title text-center">Tính năng nổi bật</h2>
+            <p class="section-subtitle text-center">Công cụ phân tích toàn diện cho thị trường việc làm IT</p>
+
             <div class="features-grid">
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">📊</div>
-                    <h3 class="feature-title">Dashboard Trực quan</h3>
+                    <h3 class="feature-title">Bảng điều khiển trực quan</h3>
                     <p class="feature-description">
-                        Visualize dữ liệu với charts sinh động, dễ hiểu. KPI cards và insights ngay lập tức.
+                        Hiển thị dữ liệu với biểu đồ sinh động và dễ hiểu. Theo dõi KPI và nhận insights ngay lập tức.
                     </p>
                 </div>
+
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">🔍</div>
-                    <h3 class="feature-title">Tìm kiếm & Filter</h3>
+                    <h3 class="feature-title">Tìm kiếm & Bộ lọc nâng cao</h3>
                     <p class="feature-description">
-                        Browse jobs với filters mạnh mẽ. Tìm kiếm theo quốc gia, role, keyword dễ dàng.
+                        Tìm kiếm việc làm với bộ lọc mạnh mẽ theo quốc gia, danh mục, kỹ năng và mức lương.
                     </p>
                 </div>
+
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">🌏</div>
-                    <h3 class="feature-title">So sánh Quốc gia</h3>
+                    <h3 class="feature-title">So sánh quốc gia</h3>
                     <p class="feature-description">
-                        Phân tích thị trường từng quốc gia. So sánh xu hướng giữa các khu vực.
+                        Phân tích xu hướng tuyển dụng từng quốc gia. So sánh cơ hội việc làm giữa các khu vực.
                     </p>
                 </div>
+
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Phân tích Kỹ năng</h3>
+                    <h3 class="feature-title">Phân tích kỹ năng</h3>
                     <p class="feature-description">
-                        Khám phá top skills được yêu cầu. Python, SQL, AWS, Excel, English phổ biến thế nào?
+                        Khám phá kỹ năng được yêu cầu nhiều nhất: Python, SQL, AWS, Excel và tiếng Anh.
+                    </p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📂</div>
+                    <h3 class="feature-title">Phân loại theo danh mục</h3>
+                    <p class="feature-description">
+                        Lọc theo danh mục công việc: Data Analyst, Data Engineer, Software Engineer.
+                    </p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">💾</div>
+                    <h3 class="feature-title">Xuất dữ liệu</h3>
+                    <p class="feature-description">
+                        Tải xuống danh sách việc làm dưới định dạng CSV để phân tích thêm.
                     </p>
                 </div>
             </div>
@@ -122,9 +146,9 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-content animate-on-scroll">
-                <h2 class="cta-title">Sẵn sàng khám phá?</h2>
+                <h2 class="cta-title">Sẵn sàng khám phá thị trường?</h2>
                 <p class="cta-text">
-                    Bắt đầu phân tích thị trường việc làm toàn cầu ngay hôm nay
+                    Bắt đầu phân tích dữ liệu việc làm IT toàn cầu ngay hôm nay
                 </p>
                 <a href="pages/dashboard.html" class="btn btn-primary btn-lg">
                     Bắt đầu ngay →
@@ -137,7 +161,8 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2026 Global Job Market Analysis. Data from Adzuna API.</p>
+                <p>&copy; 2026 Phân tích Thị trường Việc làm Toàn cầu. Dữ liệu từ Adzuna API.</p>
+                <p class="footer-note">Cập nhật: 1,653 việc làm từ 8 quốc gia</p>
             </div>
         </div>
     </footer>
@@ -147,4 +172,5 @@
     <script src="js/nav.js"></script>
     <script src="js/home.js"></script>
 </body>
+
 </html>

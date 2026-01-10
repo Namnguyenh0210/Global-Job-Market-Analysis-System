@@ -4,24 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobs Explorer | Global Job Market Analysis</title>
+    <title>Tìm kiếm Việc làm | Phân tích Thị trường Việc làm Toàn cầu</title>
     <link rel="stylesheet" href="../css/vars.css">
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/filters.css">
     <link rel="stylesheet" href="../css/jobs.css">
 </head>
 
 <body>
     <nav class="navbar">
         <div class="container navbar-container">
-            <a href="../index.html" class="navbar-logo">🌍 Global Job Analysis</a>
+            <a href="../index.html" class="navbar-logo">🌍 Phân tích Việc làm Toàn cầu</a>
             <button class="navbar-toggle">☰</button>
             <ul class="navbar-menu">
                 <li><a href="../index.html" class="navbar-link">Trang chủ</a></li>
-                <li><a href="dashboard.html" class="navbar-link">Dashboard</a></li>
-                <li><a href="jobs.html" class="navbar-link">Jobs</a></li>
-                <li><a href="countries.html" class="navbar-link">Countries</a></li>
-                <li><a href="skills.html" class="navbar-link">Skills</a></li>
+                <li><a href="dashboard.html" class="navbar-link">Bảng điều khiển</a></li>
+                <li><a href="jobs.html" class="navbar-link active">Việc làm</a></li>
+                <li><a href="countries.html" class="navbar-link">Quốc gia</a></li>
+                <li><a href="skills.html" class="navbar-link">Kỹ năng</a></li>
             </ul>
         </div>
     </nav>
@@ -29,72 +30,118 @@
     <main class="main-content">
         <div class="container">
             <div class="page-header">
-                <h1>💼 Jobs Explorer</h1>
-                <p>Browse và tìm kiếm jobs từ khắp thế giới</p>
+                <h1>💼 Tìm kiếm việc làm</h1>
+                <p>Khám phá cơ hội việc làm IT từ 8 quốc gia</p>
             </div>
 
-            <!-- Filters -->
-            <div class="filters-bar">
-                <div class="filter-group">
-                    <label>Quốc gia:</label>
-                    <select id="filter-country">
-                        <option value="">Tất cả</option>
-                        <option value="VN">Vietnam</option>
-                        <option value="SG">Singapore</option>
-                        <option value="TH">Thailand</option>
-                        <option value="ID">Indonesia</option>
-                        <option value="US">United States</option>
-                        <option value="GB">United Kingdom</option>
-                        <option value="DE">Germany</option>
-                    </select>
+            <!-- Advanced Filters -->
+            <div class="filter-card">
+                <div class="filter-header">
+                    <h3>🎯 Bộ lọc tìm kiếm</h3>
+                    <button class="btn-text" onclick="clearAllFilters()">✕ Xóa tất cả</button>
                 </div>
-                <div class="filter-group">
-                    <label>Tìm kiếm:</label>
-                    <input type="text" id="filter-keyword" placeholder="Nhập keyword...">
+
+                <div class="filter-grid">
+                    <!-- Keyword Search -->
+                    <div class="filter-group">
+                        <label class="filter-label">🔍 Từ khóa</label>
+                        <input type="text" id="filter-keyword" class="filter-input" placeholder="Nhập chức danh..."
+                            oninput="handleFilterChange()">
+                    </div>
+
+                    <!-- Category -->
+                    <div class="filter-group">
+                        <label class="filter-label">📂 Danh mục</label>
+                        <select id="filter-category" class="filter-select" onchange="handleFilterChange()">
+                            <option value="">Tất cả</option>
+                            <option value="Data Analyst">Data Analyst</option>
+                            <option value="Data Engineer">Data Engineer</option>
+                            <option value="Software Engineer">Software Engineer</option>
+                        </select>
+                    </div>
+
+                    <!--Country -->
+                    <div class="filter-group">
+                        <label class="filter-label">🌍 Quốc gia</label>
+                        <select id="filter-country" class="filter-select" onchange="handleFilterChange()">
+                            <option value="">Tất cả</option>
+                            <option value="SG">🇸🇬 Singapore</option>
+                            <option value="US">🇺🇸 Hoa Kỳ</option>
+                            <option value="GB">🇬🇧 Anh</option>
+                            <option value="DE">🇩🇪 Đức</option>
+                            <option value="IN">🇮🇳 Ấn Độ</option>
+                            <option value="IT">🇮🇹 Ý</option>
+                            <option value="NL">🇳🇱 Hà Lan</option>
+                            <option value="NZ">🇳🇿 New Zealand</option>
+                        </select>
+                    </div>
+
+                    <!-- Has Salary -->
+                    <div class="filter-group">
+                        <label class="toggle-label">
+                            <input type="checkbox" id="filter-has-salary" class="toggle-checkbox"
+                                onchange="handleFilterChange()">
+                            <span class="toggle-text">💵 Chỉ hiển thị có lương</span>
+                        </label>
+                    </div>
                 </div>
-                <button class="btn btn-primary" onclick="applyFilters()">🔍 Tìm kiếm</button>
+
+                <div class="filter-stats">
+                    <span id="results-count">Tìm thấy 0 việc làm</span>
+                </div>
             </div>
 
             <!-- Jobs Table -->
-            <div class="table-container">
-                <table id="jobs-table">
-                    <thead>
-                        <tr>
-                            <th>Job Title</th>
-                            <th>Company</th>
-                            <th>Country</th>
-                            <th>Salary</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="jobs-tbody">
-                        <tr>
-                            <td colspan="5" class="text-center">Đang tải...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <div class="card">
+                <div class="table-header">
+                    <h3 class="card-title">📋 Danh sách việc làm</h3>
+                    <button class="btn btn-secondary" onclick="exportJobs()">
+                        📥 Xuất CSV
+                    </button>
+                </div>
 
-            <!-- Pagination -->
-            <div class="pagination" id="pagination"></div>
+                <div class="table-responsive">
+                    <table class="jobs-table" id="jobs-table">
+                        <thead>
+                            <tr>
+                                <th>Chức danh</th>
+                                <th>Danh mục</th>
+                                <th>Công ty</th>
+                                <th>Quốc gia</th>
+                                <th>Mức lương</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jobs-tbody">
+                            <tr>
+                                <td colspan="6" class="loading-cell">
+                                    <div class="loading">Đang tải dữ liệu...</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-pagination" id="pagination"></div>
+            </div>
         </div>
     </main>
 
     <!-- Job Detail Modal -->
-    <div class="modal-backdrop" id="job-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modal-title">Job Details</h3>
-                <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="job-modal" class="modal"
+        style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; align-items: center; justify-content: center;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeJobModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Job details will load here -->
             </div>
-            <div class="modal-body" id="modal-body"></div>
         </div>
     </div>
 
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2026 Global Job Market Analysis. Data from Adzuna API.</p>
+                <p>&copy; 2026 Phân tích Thị trường Việc làm Toàn cầu. Dữ liệu từ Adzuna API.</p>
             </div>
         </div>
     </footer>

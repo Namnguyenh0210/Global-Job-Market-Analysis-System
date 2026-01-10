@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countries Analysis | Global Job Market Analysis</title>
+    <title>So sánh Quốc gia | Phân tích Thị trường Việc làm Toàn cầu</title>
     <link rel="stylesheet" href="../css/vars.css">
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/components.css">
@@ -14,14 +14,14 @@
 <body>
     <nav class="navbar">
         <div class="container navbar-container">
-            <a href="../index.html" class="navbar-logo">🌍 Global Job Analysis</a>
+            <a href="../index.html" class="navbar-logo">🌍 Phân tích Việc làm Toàn cầu</a>
             <button class="navbar-toggle">☰</button>
             <ul class="navbar-menu">
                 <li><a href="../index.html" class="navbar-link">Trang chủ</a></li>
-                <li><a href="dashboard.html" class="navbar-link">Dashboard</a></li>
-                <li><a href="jobs.html" class="navbar-link">Jobs</a></li>
-                <li><a href="countries.html" class="navbar-link">Countries</a></li>
-                <li><a href="skills.html" class="navbar-link">Skills</a></li>
+                <li><a href="dashboard.html" class="navbar-link">Bảng điều khiển</a></li>
+                <li><a href="jobs.html" class="navbar-link">Việc làm</a></li>
+                <li><a href="countries.html" class="navbar-link active">Quốc gia</a></li>
+                <li><a href="skills.html" class="navbar-link">Kỹ năng</a></li>
             </ul>
         </div>
     </nav>
@@ -29,22 +29,45 @@
     <main class="main-content">
         <div class="container">
             <div class="page-header">
-                <h1>🌍 Country Analysis</h1>
-                <p>So sánh thị trường việc làm giữa các quốc gia</p>
+                <h1>🌍 So sánh thị trường theo Quốc gia</h1>
+                <p>Phân tích xu hướng tuyển dụng IT tại 8 quốc gia hàng đầu</p>
             </div>
 
-            <!-- Country Cards -->
+            <!-- Country Cards Grid -->
             <div class="countries-grid" id="countries-grid">
-                <div class="skeleton" style="height: 150px;"></div>
-                <div class="skeleton" style="height: 150px;"></div>
-                <div class="skeleton" style="height: 150px;"></div>
+                <!-- Loading skeletons -->
+                <div class="country-card skeleton-card"></div>
+                <div class="country-card skeleton-card"></div>
+                <div class="country-card skeleton-card"></div>
+                <div class="country-card skeleton-card"></div>
             </div>
 
             <!-- Comparison Chart -->
-            <div class="chart-container">
-                <h3 class="chart-title">📊 Jobs Comparison by Country</h3>
+            <div class="card chart-section">
+                <div class="chart-header">
+                    <h3 class="chart-title">📊 So sánh số lượng việc làm</h3>
+                    <button class="btn btn-secondary" onclick="downloadChart()">
+                        💾 Tải xuống
+                    </button>
+                </div>
                 <div class="chart-wrapper">
                     <canvas id="chart-countries"></canvas>
+                </div>
+            </div>
+
+            <!-- Regional Distribution -->
+            <div class="card">
+                <h3 class="card-title">🗺️ Phân bố theo khu vực</h3>
+                <div class="region-stats" id="region-stats">
+                    <div class="loading">Đang tải...</div>
+                </div>
+            </div>
+
+            <!-- Top Companies by Country -->
+            <div class="card">
+                <h3 class="card-title">🏆 Công ty tuyển dụng nhiều nhất</h3>
+                <div class="top-companies-grid" id="top-companies">
+                    <div class="loading">Đang tải...</div>
                 </div>
             </div>
         </div>
@@ -53,7 +76,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2026 Global Job Market Analysis. Data from Adzuna API.</p>
+                <p>&copy; 2026 Phân tích Thị trường Việc làm Toàn cầu. Dữ liệu từ Adzuna API.</p>
             </div>
         </div>
     </footer>

@@ -97,6 +97,7 @@ def extract_fields(job):
         'salary_period': 'year',
         'job_description': job.get('description', ''),
         'date_posted': job.get('created', ''),
+        'category': job.get('_category', 'Unknown'),
         'source': 'Adzuna'
     }
 
@@ -129,8 +130,10 @@ def clean_data(df):
     df['company'] = df['company'].fillna('Unknown Company')
     df['job_description'] = df['job_description'].fillna('')
     
-    # Clean HTML tags từ description
+    # Clean HTML tags từ description (có thể mất vài giây...)
+    print(f"   ⏳ Đang xóa HTML tags từ {len(df)} descriptions...")
     df['job_description'] = df['job_description'].apply(clean_html)
+    print(f"   ✅ Đã clean descriptions")
     
     # 4. Chuẩn hóa salary
     # Nếu có salary_min hoặc salary_max, đánh dấu has_salary = True
@@ -142,7 +145,7 @@ def clean_data(df):
 
 
 def clean_html(text):
-    """Xóa HTML tags khỏi text"""
+    """Xóa HTML tags khỏi text (optimized)"""
     if not isinstance(text, str):
         return ''
     # Remove HTML tags
@@ -198,15 +201,27 @@ def save_output(df):
     # Ensure output directory exists
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     
-    # Save CSV
+    # Save CSV (nhanh)
     csv_file = OUTPUT_DIR / 'clean_jobs.csv'
     df.to_csv(csv_file, index=False, encoding='utf-8')
     print(f"   ✅ Đã lưu CSV: {csv_file.name}")
     
-    # Save Excel
+    # Save Excel (chậm - skip nếu đã tồn tại)
     excel_file = OUTPUT_DIR / 'clean_jobs.xlsx'
-    df.to_excel(excel_file, index=False, engine='openpyxl')
-    print(f"   ✅ Đã lưu Excel: {excel_file.name}")
+    
+    # Chỉ tạo Excel nếu chưa tồn tại hoặc cũ hơn CSV
+    should_create_excel = True
+    if excel_file.exists():
+        csv_time = csv_file.stat().st_mtime
+        excel_time = excel_file.stat().st_mtime
+        if excel_time >= csv_time - 5:  # 5 second buffer
+            print(f"   ⏭️  Skip Excel (đã tồn tại): {excel_file.name}")
+            should_create_excel = False
+    
+    if should_create_excel:
+        print(f"   ⏳ Đang tạo Excel file (có thể mất 10-30 giây)...")
+        df.to_excel(excel_file, index=False, engine='openpyxl')
+        print(f"   ✅ Đã lưu Excel: {excel_file.name}")
     
     print(f"\n📁 Output tại: {OUTPUT_DIR}")
 

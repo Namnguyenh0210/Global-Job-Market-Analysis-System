@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Global Job Market Analysis</title>
+    <title>Bảng điều khiển | Phân tích thị trường việc làm toàn cầu</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="../css/vars.css">
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/filters.css">
 </head>
 
 <body>
@@ -21,10 +22,10 @@
             <button class="navbar-toggle">☰</button>
             <ul class="navbar-menu">
                 <li><a href="../index.html" class="navbar-link">Trang chủ</a></li>
-                <li><a href="dashboard.html" class="navbar-link">Dashboard</a></li>
-                <li><a href="jobs.html" class="navbar-link">Jobs</a></li>
-                <li><a href="countries.html" class="navbar-link">Countries</a></li>
-                <li><a href="skills.html" class="navbar-link">Skills</a></li>
+                <li><a href="dashboard.html" class="navbar-link active">Bảng điều khiển</a></li>
+                <li><a href="jobs.html" class="navbar-link">Việc làm</a></li>
+                <li><a href="countries.html" class="navbar-link">Quốc gia</a></li>
+                <li><a href="skills.html" class="navbar-link">Kỹ năng</a></li>
             </ul>
         </div>
     </nav>
@@ -34,9 +35,10 @@
         <div class="container">
             <!-- Page Header -->
             <div class="page-header">
-                <h1>📊 Dashboard Overview</h1>
-                <p>Tổng quan insights thị trường việc làm toàn cầu</p>
+                <h1>📊 Bảng điều khiển tổng quan</h1>
+                <p>Phân tích chuyên sâu thị trường việc làm IT toàn cầu</p>
             </div>
+
 
             <!-- KPI Cards -->
             <div class="kpi-section">
@@ -44,22 +46,26 @@
                     <div class="card-kpi">
                         <div class="card-kpi-icon">💼</div>
                         <div class="card-kpi-value" id="kpi-total-jobs">0</div>
-                        <div class="card-kpi-label">Total Jobs</div>
+                        <div class="card-kpi-label">Tổng số việc làm</div>
+                        <div class="card-kpi-trend" id="trend-jobs">↑ +12%</div>
                     </div>
                     <div class="card-kpi">
                         <div class="card-kpi-icon">🌍</div>
                         <div class="card-kpi-value" id="kpi-countries">0</div>
-                        <div class="card-kpi-label">Countries</div>
+                        <div class="card-kpi-label">Quốc gia</div>
+                        <div class="card-kpi-trend">8 khu vực</div>
                     </div>
                     <div class="card-kpi">
                         <div class="card-kpi-icon">🏢</div>
                         <div class="card-kpi-value" id="kpi-companies">0</div>
-                        <div class="card-kpi-label">Companies</div>
+                        <div class="card-kpi-label">Công ty</div>
+                        <div class="card-kpi-trend" id="trend-companies">Đa dạng</div>
                     </div>
                     <div class="card-kpi">
                         <div class="card-kpi-icon">💰</div>
                         <div class="card-kpi-value" id="kpi-salary">0%</div>
-                        <div class="card-kpi-label">Jobs with Salary</div>
+                        <div class="card-kpi-label">Có mức lương</div>
+                        <div class="card-kpi-trend" id="trend-salary">Minh bạch</div>
                     </div>
                 </div>
             </div>
@@ -69,7 +75,12 @@
                 <div class="grid grid-cols-2">
                     <!-- Jobs by Region Chart -->
                     <div class="chart-container">
-                        <h3 class="chart-title">📍 Jobs by Region</h3>
+                        <div class="chart-header">
+                            <h3 class="chart-title">📍 Việc làm theo khu vực</h3>
+                            <button class="btn-chart-action" onclick="downloadChart('chart-region')">
+                                💾 Tải xuống
+                            </button>
+                        </div>
                         <div class="chart-wrapper">
                             <canvas id="chart-region"></canvas>
                         </div>
@@ -77,10 +88,79 @@
 
                     <!-- Jobs by Country Chart -->
                     <div class="chart-container">
-                        <h3 class="chart-title">🌏 Jobs by Country</h3>
+                        <div class="chart-header">
+                            <h3 class="chart-title">🌏 Việc làm theo quốc gia</h3>
+                            <button class="btn-chart-action" onclick="downloadChart('chart-country')">
+                                💾 Tải xuống
+                            </button>
+                        </div>
                         <div class="chart-wrapper">
                             <canvas id="chart-country"></canvas>
                         </div>
+                    </div>
+
+                    <!-- Jobs by Category Chart -->
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3 class="chart-title">📂 Việc làm theo danh mục</h3>
+                            <button class="btn-chart-action" onclick="downloadChart('chart-category')">
+                                💾 Tải xuống
+                            </button>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="chart-category"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Top Skills Chart -->
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3 class="chart-title">🎯 Kỹ năng được yêu cầu nhiều nhất</h3>
+                            <button class="btn-chart-action" onclick="downloadChart('chart-skills')">
+                                💾 Tải xuống
+                            </button>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="chart-skills"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs Table -->
+            <div class="table-section">
+                <div class="card">
+                    <div class="table-header">
+                        <h3 class="card-title">📋 Danh sách việc làm</h3>
+                        <div class="table-actions">
+                            <button class="btn btn-secondary" onclick="exportTableData()">
+                                📥 Xuất CSV
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="jobs-table" id="jobs-table">
+                            <thead>
+                                <tr>
+                                    <th onclick="sortTable(0)">Chức danh ↕</th>
+                                    <th onclick="sortTable(1)">Danh mục ↕</th>
+                                    <th onclick="sortTable(2)">Công ty ↕</th>
+                                    <th onclick="sortTable(3)">Quốc gia ↕</th>
+                                    <th onclick="sortTable(4)">Mức lương ↕</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="jobs-table-body">
+                                <tr>
+                                    <td colspan="6" class="loading-cell">
+                                        <div class="loading">Đang tải dữ liệu...</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-pagination" id="table-pagination">
+                        <!-- Pagination will load here -->
                     </div>
                 </div>
             </div>
@@ -88,8 +168,8 @@
             <!-- Quick Summary -->
             <div class="summary-section">
                 <div class="card">
-                    <h3 class="card-title">📈 Quick Summary</h3>
-                    <div class="summary-content" id="summary-content">
+                    <h3 class="card-title">💡 Thông tin chi tiết</h3>
+                    <div class="summary-grid" id="summary-content">
                         <p>Đang tải insights...</p>
                     </div>
                 </div>
@@ -97,11 +177,21 @@
         </div>
     </main>
 
+    <!-- Quick View Modal -->
+    <div id="job-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeJobModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Job details will load here -->
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2026 Global Job Market Analysis. Data from Adzuna API.</p>
+                <p>&copy; 2026 Global Job Market Analysis. Dữ liệu từ Adzuna API.</p>
             </div>
         </div>
     </footer>
@@ -109,6 +199,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="../js/utils.js"></script>
+    <script src="../js/filters.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/dashboard.js"></script>
 </body>

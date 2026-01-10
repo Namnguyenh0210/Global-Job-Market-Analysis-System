@@ -141,7 +141,8 @@ def get_jobs(
     skip: int = Query(0, ge=0),
     limit: int = Query(100, ge=1, le=500),
     country: Optional[str] = None,
-    keyword: Optional[str] = None
+    keyword: Optional[str] = None,
+    category: Optional[str] = None
 ):
     """
     Endpoint: Danh sách jobs
@@ -150,6 +151,7 @@ def get_jobs(
         - limit: Số jobs trả về tối đa
         - country: Filter theo quốc gia (optional)
         - keyword: Tìm kiếm trong job_title (optional)
+        - category: Filter theo danh mục (Data Analyst, Data Engineer, Software Engineer)
     """
     check_data_loaded()
     
@@ -162,6 +164,11 @@ def get_jobs(
     # Filter theo keyword
     if keyword:
         df = df[df['job_title'].str.contains(keyword, case=False, na=False)]
+    
+    # Filter theo category
+    if category:
+        if 'category' in df.columns:
+            df = df[df['category'].str.contains(category, case=False, na=False)]
     
     total = len(df)
     

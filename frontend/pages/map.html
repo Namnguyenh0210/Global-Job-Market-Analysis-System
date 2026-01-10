@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bản đồ Việc làm | Phân tích Thị trường Việc làm Toàn cầu</title>
+    <link rel="stylesheet" href="../css/vars.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/map.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="../index.html" class="navbar-logo">🌍 Phân tích Việc làm Toàn cầu</a>
+            <button class="navbar-toggle">☰</button>
+            <ul class="navbar-menu">
+                <li><a href="../index.html" class="navbar-link">Trang chủ</a></li>
+                <li><a href="dashboard.html" class="navbar-link">Bảng điều khiển</a></li>
+                <li><a href="jobs.html" class="navbar-link">Việc làm</a></li>
+                <li><a href="countries.html" class="navbar-link">Quốc gia</a></li>
+                <li><a href="skills.html" class="navbar-link">Kỹ năng</a></li>
+                <li><a href="map.html" class="navbar-link active">Bản đồ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>🗺️ Bản đồ Việc làm Toàn cầu</h1>
+                <p>Click vào từng khu vực để xem số lượng việc làm</p>
+            </div>
+
+            <!-- Map Stats -->
+            <div class="map-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">🌏</div>
+                    <div class="stat-value" id="total-jobs">0</div>
+                    <div class="stat-label">Tổng việc làm</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-value" id="total-countries">8</div>
+                    <div class="stat-label">Quốc gia</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📍</div>
+                    <div class="stat-value" id="selected-region">Chọn khu vực</div>
+                    <div class="stat-label">Khu vực đang xem</div>
+                </div>
+            </div>
+
+            <!-- Interactive World Map -->
+            <div class="card map-card">
+                <div class="map-header">
+                    <h3>🗺️ Bản đồ phân bố việc làm</h3>
+                    <div class="map-legend">
+                        <span class="legend-item"><span class="legend-dot" style="background: #10b981;"></span> Nhiều
+                            việc làm</span>
+                        <span class="legend-item"><span class="legend-dot" style="background: #f59e0b;"></span> Trung
+                            bình</span>
+                        <span class="legend-item"><span class="legend-dot" style="background: #ef4444;"></span> Ít việc
+                            làm</span>
+                    </div>
+                </div>
+                <div class="map-container" id="world-map">
+                    <!-- SVG Map will be rendered here -->
+                </div>
+            </div>
+
+            <!-- Region Details -->
+            <div class="card region-details" id="region-details" style="display: none;">
+                <h3 id="region-name">Khu vực</h3>
+                <div class="region-stats-grid">
+                    <div class="region-stat">
+                        <div class="region-stat-label">Tổng việc làm</div>
+                        <div class="region-stat-value" id="region-jobs">0</div>
+                    </div>
+                    <div class="region-stat">
+                        <div class="region-stat-label">Quốc gia</div>
+                        <div class="region-stat-value" id="region-countries">0</div>
+                    </div>
+                    <div class="region-stat">
+                        <div class="region-stat-label">Tỷ lệ</div>
+                        <div class="region-stat-value" id="region-percentage">0%</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="viewRegionJobs()">Xem việc làm</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Phân tích Thị trường Việc làm Toàn cầu. Dữ liệu từ Adzuna API.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/nav.js"></script>
+    <script src="../js/map.js"></script>
+</body>
+
+</html>

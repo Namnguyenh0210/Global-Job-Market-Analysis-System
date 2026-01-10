@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills & Trends | Global Job Market Analysis</title>
+    <title>Phân tích Kỹ năng | Phân tích Thị trường Việc làm Toàn cầu</title>
     <link rel="stylesheet" href="../css/vars.css">
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/components.css">
@@ -14,14 +14,14 @@
 <body>
     <nav class="navbar">
         <div class="container navbar-container">
-            <a href="../index.html" class="navbar-logo">🌍 Global Job Analysis</a>
+            <a href="../index.html" class="navbar-logo">🌍 Phân tích Việc làm Toàn cầu</a>
             <button class="navbar-toggle">☰</button>
             <ul class="navbar-menu">
                 <li><a href="../index.html" class="navbar-link">Trang chủ</a></li>
-                <li><a href="dashboard.html" class="navbar-link">Dashboard</a></li>
-                <li><a href="jobs.html" class="navbar-link">Jobs</a></li>
-                <li><a href="countries.html" class="navbar-link">Countries</a></li>
-                <li><a href="skills.html" class="navbar-link">Skills</a></li>
+                <li><a href="dashboard.html" class="navbar-link">Bảng điều khiển</a></li>
+                <li><a href="jobs.html" class="navbar-link">Việc làm</a></li>
+                <li><a href="countries.html" class="navbar-link">Quốc gia</a></li>
+                <li><a href="skills.html" class="navbar-link active">Kỹ năng</a></li>
             </ul>
         </div>
     </nav>
@@ -29,35 +29,50 @@
     <main class="main-content">
         <div class="container">
             <div class="page-header">
-                <h1>🎯 Skills & Trends</h1>
-                <p>Top kỹ năng được yêu cầu nhiều nhất trong thị trường việc làm</p>
+                <h1>🎯 Phân tích Kỹ năng IT</h1>
+                <p>Khám phá kỹ năng được yêu cầu nhiều nhất trong thị trường việc làm</p>
             </div>
 
-            <!-- Top Skills Chart -->
-            <div class="chart-container">
-                <h3 class="chart-title">📊 Top 5 Skills</h3>
+            <!-- Skills Overview Cards -->
+            <div class="skills-overview">
+                <h2 class="section-title">Kỹ năng hàng đầu</h2>
+                <div class="skills-grid" id="skills-grid">
+                    <!-- Loading -->
+                    <div class="skill-card skeleton-card"></div>
+                    <div class="skill-card skeleton-card"></div>
+                    <div class="skill-card skeleton-card"></div>
+                    <div class="skill-card skeleton-card"></div>
+                    <div class="skill-card skeleton-card"></div>
+                </div>
+            </div>
+
+            <!-- Skills Demand Chart -->
+            <div class="card chart-section">
+                <div class="chart-header">
+                    <h3 class="chart-title">📊 Nhu cầu kỹ năng (%)</h3>
+                    <button class="btn btn-secondary" onclick="downloadChart()">
+                        💾 Tải xuống
+                    </button>
+                </div>
                 <div class="chart-wrapper">
                     <canvas id="chart-skills"></canvas>
                 </div>
             </div>
 
-            <!-- Skills Tags Cloud -->
-            <div class="skills-cloud">
-                <h3>💡 Popular Skills</h3>
-                <div id="skills-tags" class="tags-container">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">AWS</span>
-                    <span class="skill-tag">Excel</span>
-                    <span class="skill-tag">English</span>
+            <!-- Skills by Category -->
+            <div class="card">
+                <h3 class="card-title">📂 Kỹ năng theo danh mục công việc</h3>
+                <div class="category-skills" id="category-skills">
+                    <div class="loading">Đang tải...</div>
                 </div>
             </div>
 
-            <!-- Skills Summary -->
+            <!-- Skill Combinations -->
             <div class="card">
-                <h3 class="card-title">📈 Insights</h3>
-                <div id="skills-summary" class="summary-content">
-                    <p>Đang tải insights...</p>
+                <h3 class="card-title">🔗 Kết hợp kỹ năng phổ biến</h3>
+                <p class="card-subtitle">Các kỹ năng thường xuất hiện cùng nhau trong mô tả công việc</p>
+                <div class="skill-combos" id="skill-combos">
+                    <div class="loading">Đang tải...</div>
                 </div>
             </div>
         </div>
@@ -66,7 +81,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2026 Global Job Market Analysis. Data from Adzuna API.</p>
+                <p>&copy; 2026 Phân tích Thị trường Việc làm Toàn cầu. Dữ liệu từ Adzuna API.</p>
             </div>
         </div>
     </footer>

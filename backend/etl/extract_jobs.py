@@ -128,6 +128,9 @@ def extract_jobs_for_country(country_code, country_name):
             
             if data and 'results' in data:
                 jobs = data['results']
+                # Tag mỗi job với category (keyword)
+                for job in jobs:
+                    job['_category'] = keyword
                 all_jobs.extend(jobs)
                 
                 # Nếu không còn jobs, dừng pagination
